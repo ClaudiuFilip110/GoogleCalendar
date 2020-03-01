@@ -6,4 +6,4 @@ With this script you can get access to your Google calendar and print the next 1
 
 #UI
 
-A UI and other functionality will be added later.
+An UI and other functionality will be added later.
