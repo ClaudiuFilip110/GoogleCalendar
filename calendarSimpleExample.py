@@ -47,9 +47,17 @@ def main():
     for calendar in calendarList['items']:
         print(str(i) + ". " + calendar['summary'])
         i+=1
-
+    userInput = 0
     #let the user choose the calendar
-    userInput = int(input())
+    while True:
+        try:
+            userInput = int(input())
+        except ValueError:
+            print("The input must be a number!!")
+            userInput = 0
+        finally:
+            if userInput != 0:
+                break
 
     #add time for printing purposes
     now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
