@@ -78,16 +78,13 @@ def main():
                 print(event['summary'] + " -----", str(event['start'].get('dateTime')))
     except:
         print("This calendar has no events!")
-
-
-
-    """
-    the next task is to design an UI.
-    """
+    print('Press Enter to continue...')
+    input()
 
 if __name__ == '__main__':
-    main()
+    #main()
     while True:
+        os.system('cls')
         print("Do you want to close the app or look at another calendar?")
         print("1. Look at calendar")
         print("2. Exit")

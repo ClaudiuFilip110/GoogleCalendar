@@ -2,8 +2,8 @@
 
 This code is an my first attempt to working with an API and scripting.
 
-With this script you can get access to your Google calendar and print the next 10 events from a certain calendar.
+For now it only shows you the first 10 events in a specific calendar.
 
-#UI
-
-An UI and other functionality will be added later.
+- later development
+  # add visiblity based on days(today, tomorrow etc)
+  # add user input for days
