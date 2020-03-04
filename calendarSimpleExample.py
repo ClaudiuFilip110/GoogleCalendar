@@ -6,6 +6,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import sys
+import subprocess as sp
 import time
 
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
@@ -69,19 +70,35 @@ def main():
     events = service.events().list(calendarId=calendarIds[userInput-1], timeMin=now,
                                           maxResults=10, singleEvents=True,
                                           orderBy='startTime').execute()
-    for event in events['items']:
-        print(event['summary'] + " -----", str(event['start'].get('dateTime')))
 
-    
+    try:
+        errorBlock = events['items'][0]['id']
+        if events['items']:
+            for event in events['items']:
+                print(event['summary'] + " -----", str(event['start'].get('dateTime')))
+    except:
+        print("This calendar has no events!")
+
+
+
     """
     the next task is to design an UI.
     """
 
 if __name__ == '__main__':
-    #main()
-    for i in range(3,-1,-1):
-        time.sleep(1)
+    main()
+    while True:
+        print("Do you want to close the app or look at another calendar?")
+        print("1. Look at calendar")
+        print("2. Exit")
+        inp = input()
+        if int(inp) == 1:
+            main()
+        if int(inp) == 2:
+            break
+    #fix this
+    #it doesn't work correctly
+    for i in range(3, -1, -1):
         if i != 0:
             print('Closing app in ', i, 'seconds')
-
-
+        time.sleep(1)
