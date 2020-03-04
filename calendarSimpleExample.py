@@ -6,6 +6,7 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import sys
+import time
 
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
@@ -43,11 +44,12 @@ def main():
     #print the list of available calendarss
     i=1
     sys.stdout.flush()
-    print("Choose a calendar to show events from it")
     for calendar in calendarList['items']:
         print(str(i) + ". " + calendar['summary'])
         i+=1
     userInput = 0
+
+    print("Choose a calendar to show events from it")
     #let the user choose the calendar
     while True:
         try:
@@ -55,7 +57,8 @@ def main():
         except ValueError:
             userInput = 0
         finally:
-            print("The input must be a number!! between 1 and ", i-1)
+            if not(1 <= userInput <= i-1):
+                print("The input must be a number!! between 1 and ", i-1)
             if userInput != 0 and 1 <= userInput <= i-1:
                 break
 
@@ -73,7 +76,12 @@ def main():
     """
     the next task is to design an UI.
     """
+
 if __name__ == '__main__':
-    main()
-    print('waiting for you to press a key...')
-    input()
+    #main()
+    for i in range(3,-1,-1):
+        time.sleep(1)
+        if i != 0:
+            print('Closing app in ', i, 'seconds')
+
+
